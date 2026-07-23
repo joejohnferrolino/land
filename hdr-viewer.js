@@ -3,7 +3,7 @@ import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 
-const HDR_URL = 'img/resting_place_2k.hdr';
+const HDR_URL = 'img/resting_place_4k.hdr';
 const container = document.getElementById('hdrViewer');
 const loaderEl = document.getElementById('tourLoader');
 const loaderPercentEl = document.getElementById('tourLoaderPercent');

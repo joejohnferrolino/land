@@ -104,8 +104,8 @@ html, body {
 /* Info card */
 .info-card {
   position: absolute;
-  top: 16px;
-  left: 16px;
+  top: 23px;
+  left: 26px;
   width: 300px;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 10px;
