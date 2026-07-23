@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CEB-00001 | Lapu-Lapu City, Cebu — Property Viewer</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+</head>
+<body>
+
+<div class="viewer" id="viewer">
+
+  <!-- Aerial background -->
+  <!-- <div class="scene" id="scene">
+    <div id="aerial" class="aerial-stage">
+      <img src="img/lot4k.jpg" alt="Aerial view of the property" class="aerial-img" draggable="false">
+    </div>
+  </div> -->
+
+  <!-- 360 HDR tour layer (shown by default, sits below the info card) -->
+  <div class="tour-stage active" id="tourStage">
+    <div id="hdrViewer" class="hdr-canvas"></div>
+    <div class="tour-loader" id="tourLoader">
+      <div class="tour-spinner"></div>
+      <p>Loading 360° view… <span id="tourLoaderPercent">0%</span></p>
+    </div>
+    <!-- <button class="tour-close" id="tourCloseBtn" aria-label="Close tour">&times;</button> -->
+    <p class="pano-hint pano-hint-float">Drag to look around, scroll to zoom.</p>
+  </div>
+
+  <!-- Info Card -->
+  <div class="info-card" id="infoCard">
+    <div class="info-card-header">
+      <h2>Lot Number: <span>CEB-00001</span></h2>
+      <button class="minimize-btn" id="minimizeBtn" aria-label="Minimize">&minus;</button>
+    </div>
+    <div class="info-card-body" id="infoCardBody">
+      <p class="row"><span class="icon">📍</span> Location: Lapu-Lapu City, Cebu</p>
+      <p class="row"><span class="icon">📐</span> Lot Area: Total <strong id="totalAreaText">1,000 sqm</strong></p>
+      <p class="row"><span class="icon">📊</span> Portion: <span class="sold" id="soldAreaText">Sold 400 sqm (SOLD)</span>, <span class="available" id="availableAreaText">Other 600 sqm (AVAILABLE)</span></p>
+
+      <button class="btn btn-primary" id="openTourBtn"><span class="icon">🧭</span> Open Tour</button>
+      <button class="btn" data-modal="galleryModal"><span class="icon">🖼️</span> Gallery</button>
+      <button class="btn" data-modal="locationModal"><span class="icon">📍</span> Location</button>
+
+      <p class="doc-link" data-modal="docsModal">Owner Verified Documents (optional)</p>
+
+      <p class="contact-label">Contact Owner:</p>
+      <button class="btn btn-request" data-modal="requestModal">Request Viewing</button>
+    </div>
+  </div>
+
+  <!-- Mini map -->
+  <!-- <div class="mini-map">
+    <svg viewBox="0 0 160 110" xmlns="http://www.w3.org/2000/svg">
+      <rect width="160" height="110" fill="#dce9df"/>
+      <path d="M0,60 C40,40 80,75 120,55 C140,45 150,50 160,45 L160,110 L0,110 Z" fill="#c9dfc0"/>
+      <path d="M0,20 C50,10 100,30 160,15 L160,0 L0,0 Z" fill="#a9c9d8"/>
+      <rect x="60" y="55" width="26" height="16" fill="none" stroke="#ff5a2e" stroke-width="2"/>
+      <line x1="60" y1="55" x2="86" y2="71" stroke="#ff5a2e" stroke-width="1.4"/>
+      <text x="63" y="63" font-size="5" fill="#c0392b" font-weight="700">SOLD</text>
+      <text x="60" y="68" font-size="4.5" fill="#c0392b">(400sqm)</text>
+      <text x="63" y="80" font-size="5" fill="#1e7a34" font-weight="700">AVAIL</text>
+      <text x="60" y="85" font-size="4.5" fill="#1e7a34">(600sqm)</text>
+      <circle cx="73" cy="63" r="2" fill="#2a6de0"/>
+    </svg>
+    <div class="mini-map-label">Lot area (1,000 sqm)</div>
+  </div> -->
+
+  <!-- Compass control -->
+  <!-- <div class="compass">
+    <button class="compass-arrow" id="prevDir">‹</button>
+    <div class="compass-labels">
+      <span class="dir" data-dir="West">West</span>
+      <span class="dir active" data-dir="N">N</span>
+      <span class="dir" data-dir="East">East</span>
+      <span class="dir" data-dir="S">S</span>
+    </div>
+    <button class="compass-arrow" id="nextDir">›</button>
+  </div> -->
+
+  <!-- Zoom controls -->
+  <!-- <div class="zoom-controls">
+    <button id="zoomIn">+</button>
+    <button id="zoomOut">−</button>
+  </div> -->
+
+</div>
+
+<!-- Modals -->
+<div class="modal-overlay" id="galleryModal">
+  <div class="modal modal-wide">
+    <button class="modal-close" data-close>&times;</button>
+    <h3>Property Gallery</h3>
+    <div class="gallery-grid" id="galleryGrid"></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="locationModal">
+  <div class="modal">
+    <button class="modal-close" data-close>&times;</button>
+    <h3>Location</h3>
+    <p style="margin-bottom:12px;color:#556;">Lapu-Lapu City, Cebu, Philippines</p>
+    <a class="btn btn-primary" style="display:inline-flex;text-decoration:none;" target="_blank"
+       href="https://www.google.com/maps/search/?api=1&query=Lapu-Lapu+City+Cebu+Philippines">
+      Open in Google Maps
+    </a>
+  </div>
+</div>
+
+<div class="modal-overlay" id="docsModal">
+  <div class="modal">
+    <button class="modal-close" data-close>&times;</button>
+    <h3>Owner Verified Documents</h3>
+    <p style="color:#556;">No verified documents have been uploaded for this listing yet.</p>
+  </div>
+</div>
+
+<div class="modal-overlay" id="requestModal">
+  <div class="modal">
+    <button class="modal-close" data-close>&times;</button>
+    <h3>Request a Viewing</h3>
+    <form id="requestForm">
+      <label>Full Name
+        <input type="text" name="name" required>
+      </label>
+      <label>Email
+        <input type="email" name="email" required>
+      </label>
+      <label>Phone
+        <input type="tel" name="phone">
+      </label>
+      <label>Message
+        <textarea name="message" rows="3" placeholder="I'm interested in the available 600 sqm portion..."></textarea>
+      </label>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send Request</button>
+    </form>
+    <p id="requestSuccess" class="success-msg" hidden>Thanks! Your request has been noted. The owner will be notified.</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+<script src="config.js"></script>
+<script src="script.js"></script>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="hdr-viewer.js"></script>
+</body>
+</html>
