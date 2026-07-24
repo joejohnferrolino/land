@@ -107,18 +107,22 @@ html, body {
   top: 23px;
   left: 26px;
   width: 300px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 20px;
   padding: 16px 18px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.5);
   z-index: 10;
-  backdrop-filter: blur(2px);
-  transition: width 0.2s ease;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  transition: width 0.2s ease, background 0.2s ease, padding 0.2s ease;
 }
 
 .info-card.minimized {
   width: auto;
   padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
 }
 .info-card.minimized .info-card-body { display: none; }
 .info-card.minimized .info-card-header { margin: 0; }
@@ -144,15 +148,18 @@ html, body {
   flex-shrink: 0;
   width: 22px;
   height: 22px;
-  border: none;
+  border: 1px solid rgba(255,255,255,0.5);
   border-radius: 50%;
-  background: #eef2f6;
-  color: #445;
+  background: rgba(255,255,255,0.35);
+  color: #333;
   font-size: 16px;
   line-height: 1;
   cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.15s;
 }
-.minimize-btn:hover { background: #dfe6ec; }
+.minimize-btn:hover { background: rgba(255,255,255,0.55); }
 
 .info-card .row {
   margin: 6px 0;
@@ -175,9 +182,11 @@ html, body {
   gap: 8px;
   margin-top: 8px;
   padding: 9px 12px;
-  border: 1px solid #d7dde3;
-  border-radius: 7px;
-  background: #fff;
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.35);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   font-size: 13px;
   font-weight: 600;
   color: #222;
@@ -185,7 +194,7 @@ html, body {
   transition: background 0.15s, transform 0.1s;
   text-align: left;
 }
-.btn:hover { background: #f2f5f8; }
+.btn:hover { background: rgba(255,255,255,0.55); }
 .btn:active { transform: scale(0.98); }
 
 .btn-primary {

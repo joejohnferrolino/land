@@ -141,8 +141,8 @@ function addLotOverlay() {
   const y = -EYE_HEIGHT;
 
   const group = new THREE.Group();
-  addOverlayRect(group, lines.total, 0xffffff, true, y); // total lot — white dashed
-  addOverlayRect(group, lines.sold, 0xff3b30, true, y); // sold — red dashed
+  addOverlayRect(group, lines.total, 0xffffff, false, y); // total lot — white
+  addOverlayRect(group, lines.sold, 0xff3b30, false, y); // sold — red
   addOverlayRect(group, lines.available, 0x2ecc71, false, y); // available — green
 
   if (lines.total) {
